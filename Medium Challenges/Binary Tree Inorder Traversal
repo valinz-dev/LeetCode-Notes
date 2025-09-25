@@ -1,0 +1,25 @@
+Problem: Binary Tree Inorder Traversal
+Difficulty: Medium
+
+Restatement:
+Return inorder traversal of a binary tree.
+
+Approach (Iterative with Stack):
+- Push all left nodes.
+- Pop, visit, then go right.
+
+Python:
+def inorderTraversal(root):
+    res, stack = [], []
+    curr = root
+    while curr or stack:
+        while curr:
+            stack.append(curr)
+            curr = curr.left
+        curr = stack.pop()
+        res.append(curr.val)
+        curr = curr.right
+    return res
+
+Notes:
+- Morris traversal is O(1) space but complex.

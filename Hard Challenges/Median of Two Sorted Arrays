@@ -1,0 +1,36 @@
+Problem: Median of Two Sorted Arrays
+Difficulty: Hard
+
+Restatement:
+Find median of two sorted arrays in O(log(min(m,n))).
+
+Approach (Binary Search Partition):
+- Binary search cut in smaller array.
+- L1,R1 from A; L2,R2 from B.
+- Adjust until L1 <= R2 and L2 <= R1.
+
+Python:
+def findMedianSortedArrays(a, b):
+    if len(a) > len(b):
+        a, b = b, a
+    m, n = len(a), len(b)
+    total = m+n
+    half = (total+1)//2
+    lo, hi = 0, m
+    while lo <= hi:
+        i = (lo+hi)//2
+        j = half-i
+        L1 = a[i-1] if i>0 else float('-inf')
+        R1 = a[i] if i<m else float('inf')
+        L2 = b[j-1] if j>0 else float('-inf')
+        R2 = b[j] if j<n else float('inf')
+        if L1 <= R2 and L2 <= R1:
+            if total%2: return max(L1,L2)
+            return (max(L1,L2)+min(R1,R2))/2
+        elif L1 > R2:
+            hi = i-1
+        else:
+            lo = i+1
+
+Notes:
+- Handle edge cases with inf carefully.

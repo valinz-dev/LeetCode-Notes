@@ -1,0 +1,21 @@
+Problem: Maximum Subarray
+Difficulty: Easy
+
+Restatement:
+Find contiguous subarray with largest sum.
+
+Approach (Kadane’s Algorithm):
+- curr = max(x, curr+x).
+- best = max(best, curr).
+
+Python:
+def maxSubArray(nums):
+    best = nums[0]
+    curr = 0
+    for x in nums:
+        curr = max(x, curr + x)
+        best = max(best, curr)
+    return best
+
+Notes:
+- Handles all negative arrays: best is max element.

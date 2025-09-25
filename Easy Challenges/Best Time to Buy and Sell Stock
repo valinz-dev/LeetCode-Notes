@@ -1,0 +1,22 @@
+Problem: Best Time to Buy and Sell Stock
+Difficulty: Easy
+
+Restatement:
+Maximize profit from one buy/sell.
+
+Approach (Track min):
+- Track min_price so far.
+- Each step update best = max(best, price - min_price).
+
+Python:
+def maxProfit(prices):
+    min_price = float('inf')
+    best = 0
+    for p in prices:
+        min_price = min(min_price, p)
+        best = max(best, p - min_price)
+    return best
+
+Notes:
+- O(n), O(1).
+- Monotone decreasing array returns 0.

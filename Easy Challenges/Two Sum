@@ -1,0 +1,26 @@
+Problem: Two Sum
+Difficulty: Easy
+
+Restatement:
+Given an integer array nums and an integer target, return indices of the two numbers such that they add up to target.
+
+Initial Thoughts:
+- Brute force double loop works but is O(n^2).
+- Better idea: use a hash map for O(n).
+
+Approach (Hash Map):
+- Traverse nums; for each n at index i, check if target-n is in seen dict.
+- If yes, return [seen[target-n], i].
+- Else store seen[n] = i.
+
+Python:
+def twoSum(nums, target):
+    seen = {}
+    for i, n in enumerate(nums):
+        if target - n in seen:
+            return [seen[target-n], i]
+        seen[n] = i
+
+Notes:
+- Handles duplicates correctly.
+- Classic hashmap pattern.

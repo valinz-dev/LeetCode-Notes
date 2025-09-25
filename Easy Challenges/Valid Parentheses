@@ -1,0 +1,27 @@
+Problem: Valid Parentheses
+Difficulty: Easy
+
+Restatement:
+Given a string containing only '()[]{}', check if it’s valid.
+
+Approach (Stack):
+- Push open brackets.
+- On close, check if matches stack top.
+- Valid if stack empty at end.
+
+Python:
+def isValid(s):
+    pairs = {')':'(', ']':'[', '}':'{'}
+    stack = []
+    for ch in s:
+        if ch in '([{':
+            stack.append(ch)
+        else:
+            if not stack or stack[-1] != pairs[ch]:
+                return False
+            stack.pop()
+    return not stack
+
+Notes:
+- Fails early if mismatch.
+- Odd length string cannot be valid.
